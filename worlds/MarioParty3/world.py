@@ -1,7 +1,7 @@
 from worlds.AutoWorld import World, WebWorld
 from dataclasses import dataclass
 from Options import PerGameCommonOptions
-from BaseClasses import ItemClassification
+from BaseClasses import ItemClassification, Tutorial
 
 from .items import MarioParty3Item, get_item_table
 from .locations import get_location_table
@@ -10,7 +10,14 @@ from .options import MP3Options
 
 class MP3WebWorld(WebWorld):
     theme = "partyTime"
-    tutorials = []
+    tutorials = [Tutorial(
+        "Multiworld Setup Guide",
+        "How to set up Mario Party 3 with Archipelago.",
+        "English",
+        "setup.md",
+        "setup/en",
+        ["xoric713"],
+    )]
 
 class MarioParty3(World):
     game = "Mario Party 3"
