@@ -26,5 +26,5 @@ Any shuffled item can appear in another player's world.
 
 ## When the player receives an item, what happens?
 
-Items are applied by the BizHawk client and Lua connector and show up in-game after a short delay (typically by the next
-board update).
+Items are applied by the BizHawk client and Lua connector and show up in-game at the start of your next turn. If a player has any items gained either in game or via archipelago, then the inventory menu opens at the start of your turn and allows you to select an item to put into slot 0 for the turn. 
+current warp blocks and magic lamps are illegal due to progression balancing, so they are re rolled into a legal item. NPCs still can use magic lamps, as the don't affect the player.
