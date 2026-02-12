@@ -268,12 +268,17 @@ Response:
 ]]
 
 
-local BOARDS_LUA = "../../worlds/MarioParty3/boards/"
-package.path = package.path
-    ..";"..BOARDS_LUA.."?.lua"
-    ..";"..BOARDS_LUA.."?/init.lua"
-    ..";"..BOARDS_LUA.."?/?.lua"
-local router = require("router")
+local function add_local_path()
+    local source = debug.getinfo(1, "S").source
+    if source:sub(1, 1) == "@" then
+        local dir = source:sub(2):match("^(.*[\\/])")
+        if dir and not package.path:find(dir, 1, true) then
+            package.path = package.path .. ";" .. dir .. "?.lua;" .. dir .. "?/init.lua"
+        end
+    end
+end
+add_local_path()
+local router = require("boards.router")
 function MP3tick()
     router.update()
 
