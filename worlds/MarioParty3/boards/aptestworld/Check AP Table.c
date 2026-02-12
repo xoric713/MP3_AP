@@ -13,18 +13,8 @@ typedef volatile struct {
     u32 boardIndex;
     u8 Player;
     u8 Spaces[128];
-    u8 Zone_1;
-    u8 Z1_open;
-    u8 Zone_2;
-    u8 Z2_open;
-    u8 Zone_3;
-    u8 Z3_open;
-    u8 Zone_4;
-    u8 Z4_open;
-    u8 Zone_5;
-    u8 Z5_open;
-    u8 Zone_6;
-    u8 Z6_open;
+    u8 Zone[20];
+    u8 Zopen[20];
     u8 FillerCoins;
     u8 GivenCoins;
     u8 Shrooment;
@@ -80,16 +70,16 @@ void main()
         MAILBOX->magic = MB_MAGIC;
         MAILBOX->boardIndex = 1000;
         MAILBOX->Player = 0;
-        MAILBOX->Zone_1 = 0;
-        MAILBOX->Zone_2 = 0;
-        MAILBOX->Zone_3 = 0;
-        MAILBOX->Zone_4 = 0;
-        MAILBOX->Zone_5 = 0;
-        MAILBOX->Zone_6 = 0;
+        int i = 0;
+        while(i<20){
+        MAILBOX->Zone[i] = 0;
+        MAILBOX->Zopen[i] = 0; 
+            i++;
+        }
         MAILBOX->GivenCoins = 0;
         MAILBOX->Shrooment = 0;
 
-        int i;
+
         for (i = 0; i < 128; i++) {
             MAILBOX->Spaces[i] = 0;
         }
@@ -102,78 +92,23 @@ void main()
     } else {
         MAILBOX->Player = 1;
     }
-    // normal operation
-    if(MAILBOX->Z1_open == 1 && MAILBOX->Player == 1){
-        char *text = "Zone 1 is now open"
-        "\xC2"
-        "\xFF";
-        ShowMessage(-1, text, 0, 0, 0, 0, 0);
-        MAILBOX->Z1_open = 2;
+    int i = 0;
+    while(i<10){
+        if(MAILBOX->Zopen[i] == 1 && MAILBOX->Player == 1){
+            char *text = "Zone ";
+            char *t2 = " is now open"
+            "\xC2"
+            "\xFF";
+            char result[512];
+            sprintf(result, "%s%d%s", text, i+1, t2);
+            ShowMessage(-1, result, 0, 0, 0, 0, 0);
+            MAILBOX->Zopen[i] = 2;
 
-        func_800EC9DC();
-        CloseMessage();
-        func_800EC6EC();
-
-    }
-    if(MAILBOX->Z2_open == 1 && MAILBOX->Player == 1){
-        char *text = "Zone 2 is now open"
-        "\xC2"
-        "\xFF";
-        ShowMessage(-1, text, 0, 0, 0, 0, 0);
-        MAILBOX->Z2_open = 2;
-
-        func_800EC9DC();
-        CloseMessage();
-        func_800EC6EC();
-
-    }
-    if(MAILBOX->Z3_open == 1 && MAILBOX->Player == 1){
-        char *text = "Zone 3 is now open"
-        "\xC2"
-        "\xFF";
-        ShowMessage(-1, text, 0, 0, 0, 0, 0);
-        MAILBOX->Z3_open = 2;
-
-        func_800EC9DC();
-        CloseMessage();
-        func_800EC6EC();
-
-    }
-    if(MAILBOX->Z4_open == 1 && MAILBOX->Player == 1){
-        char *text = "Zone 4 is now open"
-        "\xC2"
-        "\xFF";
-        ShowMessage(-1, text, 0, 0, 0, 0, 0);
-        MAILBOX->Z4_open = 2;
-
-        func_800EC9DC();
-        CloseMessage();
-        func_800EC6EC();
-
-    }
-    if(MAILBOX->Z5_open == 1 && MAILBOX->Player == 1){
-        char *text = "Zone 5 is now open"
-        "\xC2"
-        "\xFF";
-        ShowMessage(-1, text, 0, 0, 0, 0, 0);
-        MAILBOX->Z5_open = 2;
-
-        func_800EC9DC();
-        CloseMessage();
-        func_800EC6EC();
-
-    }
-    if(MAILBOX->Z6_open == 1 && MAILBOX->Player == 1){
-        char *text = "Zone 6 is now open"
-        "\xC2"
-        "\xFF";
-        ShowMessage(-1, text, 0, 0, 0, 0, 0);
-        MAILBOX->Z6_open = 2;
-
-        func_800EC9DC();
-        CloseMessage();
-        func_800EC6EC();
-
+            func_800EC9DC();
+            CloseMessage();
+            func_800EC6EC();
+        }
+        i++;
     }
     if(MAILBOX->FillerCoins > MAILBOX->GivenCoins && MAILBOX->Player == 1){
         u8 coinsToGive = MAILBOX->FillerCoins - MAILBOX->GivenCoins;

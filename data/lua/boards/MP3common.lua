@@ -150,7 +150,7 @@ function M.update()
         max = M.r8(global_addrs["total_turns"])
     end
     curturn = M.r8(global_addrs["current_turn"])
-    if last_offset == 0 then
+    if last_offset == 0 and off_combo ~= 0 then
         temp = curturn + off_combo
         if temp < 1 then
             temp = 1 

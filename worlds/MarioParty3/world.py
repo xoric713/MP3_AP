@@ -6,7 +6,7 @@ from BaseClasses import ItemClassification, Tutorial
 from .items import MarioParty3Item, get_item_table
 from .locations import get_location_table
 from .regions import create_regions
-from .options import MP3Options
+from .Options import MP3Options
 
 class MP3WebWorld(WebWorld):
     theme = "partyTime"

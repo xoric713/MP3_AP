@@ -1,12 +1,8 @@
 from Options import PerGameCommonOptions
-from .boards.registry import iter_board_option_mixins
 from dataclasses import dataclass
 from .boards.Options import PlayerCharOption, COM1CharOption, COM2CharOption, COM3CharOption, ProgTurnsOption
-from .boards.aptestworld.options import aptestenabledOption, APtestGameLength
+from .boards.aptestworld.Options import aptestenabledOption, APtestGameLength
 
-_mixins = list(iter_board_option_mixins())
-
-Boardmixin = type("MP3Options", tuple(_mixins), {})
 
 @dataclass
 class MP3Options(PerGameCommonOptions):

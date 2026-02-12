@@ -303,7 +303,12 @@ class APTBwatcher:
         SS = sum(
             item_id.item == board_id + 8 for item_id in ctx.items_received
         )
-        if SS > turncount and board_id != 0:
+        if SS > turncount and board_id != 0 and progturns:
+            await ctx.send_msgs([{
+                "cmd": "StatusUpdate",
+                "status": ClientStatus.CLIENT_GOAL,
+            }])
+        if has_key_6 and not progturns and board_id != 0:
             await ctx.send_msgs([{
                 "cmd": "StatusUpdate",
                 "status": ClientStatus.CLIENT_GOAL,

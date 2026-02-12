@@ -1,3 +1,3 @@
-from . import content, regions
+from . import content, regions,watcher
 
-__all__ = ["content", "regions"]
+__all__ = ["content", "regions", "watcher"]

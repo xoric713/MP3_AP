@@ -15,21 +15,12 @@ typedef volatile struct {
     u32 boardIndex;
     u8 Player;
     u8 Spaces[128];
-    u8 Zone_1;
-    u8 Z1_open;
-    u8 Zone_2;
-    u8 Z2_open;
-    u8 Zone_3;
-    u8 Z3_open;
-    u8 Zone_4;
-    u8 Z4_open;
-    u8 Zone_5;
-    u8 Z5_open;
-    u8 Zone_6;
-    u8 Z6_open;
+    u8 Zone[20];
+    u8 Zopen[20];
     u8 FillerCoins;
     u8 GivenCoins;
     u8 Shrooment;
+    u8 positions[4];
 } Mailbox;
 
 #define MAILBOX ((Mailbox*)MB_BASE)
@@ -70,23 +61,12 @@ void main() {
         "\xC2" // !
         "\xFF";
     int *chk = 0;
-    if (ZONE == 1 && MAILBOX->Z1_open < 2) {
-        chk = 1;
-    }
-    if (ZONE == 2 && MAILBOX->Z2_open < 2) {
-        chk = 1;
-    }
-    if (ZONE == 3 && MAILBOX->Z3_open < 2) {
-        chk = 1;
-    }
-    if (ZONE == 4 && MAILBOX->Z4_open < 2) {
-        chk = 1;
-    }
-    if (ZONE == 5 && MAILBOX->Z5_open < 2) {
-        chk = 1;
-    }
-    if (ZONE == 6 && MAILBOX->Z6_open < 2) {
-        chk = 1;
+    int i = 0;
+    while(i<20){
+        if (ZONE == i+1 && MAILBOX->Zopen[i] < 2) {
+            chk = 1;
+        }
+        i++;
     }
     if (MAILBOX->Player == 1 && chk != 0) {
         SetBoardPlayerAnimation(-1, -1, 2);

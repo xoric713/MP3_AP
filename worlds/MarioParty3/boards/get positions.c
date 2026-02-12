@@ -11,7 +11,7 @@ typedef volatile struct {
     u8 Player;
     u8 Spaces[128];
     u8 Zones[20];
-    u8 Zones_open[20];
+    u8 Zopen[20];
     u8 FillerCoins;
     u8 GivenCoins;
     u8 Shrooment;

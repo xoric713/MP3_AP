@@ -14,21 +14,12 @@ typedef volatile struct {
     u32 boardIndex;
     u8 Player;
     u8 Spaces[128];
-    u8 Zone_1;
-    u8 Z1_open;
-    u8 Zone_2;
-    u8 Z2_open;
-    u8 Zone_3;
-    u8 Z3_open;
-    u8 Zone_4;
-    u8 Z4_open;
-    u8 Zone_5;
-    u8 Z5_open;
-    u8 Zone_6;
-    u8 Z6_open;
+    u8 Zone[20];
+    u8 Zopen[20];
     u8 FillerCoins;
     u8 GivenCoins;
     u8 Shrooment;
+    u8 positions[4];
 } Mailbox;
 
 #define MAILBOX ((Mailbox*)MB_BASE)
@@ -63,22 +54,22 @@ void int_to_str(int value, char* buf) {
 void main()
 {
     u8 SID = SpaceID;
-    if(SID == 5 && MAILBOX->Player == 1 && MAILBOX->Zone_1 == 0){
-        MAILBOX->Zone_1 = 1;
+    if(SID == 5 && MAILBOX->Player == 1 && MAILBOX->Zone[0] == 0){
+        MAILBOX->Zone[0] = 1;
     }
-    if(SID == 12 && MAILBOX->Player == 1 && MAILBOX->Zone_2 == 0){
-        MAILBOX->Zone_2 = 1;
+    if(SID == 12 && MAILBOX->Player == 1 && MAILBOX->Zone[1] == 0){
+        MAILBOX->Zone[1] = 1;
     }
-    if(SID == 23 && MAILBOX->Player == 1 && MAILBOX->Zone_3 == 0){
-        MAILBOX->Zone_3 = 1;
+    if(SID == 23 && MAILBOX->Player == 1 && MAILBOX->Zone[2] == 0){
+        MAILBOX->Zone[2] = 1;
     }
-    if(SID == 42 && MAILBOX->Player == 1 && MAILBOX->Zone_4 == 0){
-        MAILBOX->Zone_4 = 1;
+    if(SID == 42 && MAILBOX->Player == 1 && MAILBOX->Zone[3] == 0){
+        MAILBOX->Zone[3] = 1;
     }
-    if(SID == 85 && MAILBOX->Player == 1 && MAILBOX->Zone_5 == 0){
-        MAILBOX->Zone_5 = 1;
+    if(SID == 85 && MAILBOX->Player == 1 && MAILBOX->Zone[4] == 0){
+        MAILBOX->Zone[4] = 1;
     }
-    if(SID == 58 && MAILBOX->Player == 1 && MAILBOX->Zone_6 == 0){
-        MAILBOX->Zone_6 = 1;
+    if(SID == 58 && MAILBOX->Player == 1 && MAILBOX->Zone[5] == 0){
+        MAILBOX->Zone[5] = 1;
     }
 }
