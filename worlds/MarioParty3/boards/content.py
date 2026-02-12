@@ -9,7 +9,7 @@ class datacontent():
             "I0": "Mushroom Item",
             "I1": "Skeleton Key Item",
             "I2": "Poison Mushroom Item",
-            "I3": "Reverse Mushroom Item",
+            "I3": "--ILLEGAL--RM",  # Double Mushroom
             "I4": "Cellular Shopper Item",
             "I5": "--ILLEGAL--WB",  # Warp Block
             "I6": "Plunder Chest Item",
@@ -24,7 +24,6 @@ class datacontent():
             "I15": "Koopa Card Item",
             "I16": "Barter Box Item",
             "I17": "Lucky Coin Item",
-            "I18": "Wacky Watch Item",
     }
 
 

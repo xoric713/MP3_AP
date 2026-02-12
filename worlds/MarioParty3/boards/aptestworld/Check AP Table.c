@@ -28,11 +28,12 @@ typedef volatile struct {
     u8 FillerCoins;
     u8 GivenCoins;
     u8 Shrooment;
+    u8 positions[4];
 } Mailbox;
 
 #define MAILBOX ((Mailbox*)MB_BASE)
 
-#define SANDBOX_BASE 0x807E0000u
+#define SANDBOX_BASE 0x807D00C8u
 
 typedef volatile struct {
     u8 inventory[20];
@@ -287,7 +288,7 @@ void main()
         C = 0;
         int k = 0;
         while(C<3){
-            if(player->items[C] == ITEM_WARP_BLOCK || player->items[C] == ITEM_MAGIC_LAMP){    
+            if(player->items[C] == ITEM_WARP_BLOCK || player->items[C] == ITEM_MAGIC_LAMP || player->items[C] == ITEM_REVERSE_MUSHROOM){    
                 int k = 0;
                 while(k < 90){
                     int r = GetRandomByte()%19;
@@ -296,7 +297,7 @@ void main()
                     SleepVProcess();
                     k++;
                 }
-                while(player->items[C] == ITEM_WARP_BLOCK || player->items[C] == ITEM_MAGIC_LAMP){
+                while(player->items[C] == ITEM_WARP_BLOCK || player->items[C] == ITEM_MAGIC_LAMP || player->items[C] == ITEM_REVERSE_MUSHROOM){
                     int r = GetRandomByte()%19;
                     player->items[C] = r;
                     RefreshHUD(p);

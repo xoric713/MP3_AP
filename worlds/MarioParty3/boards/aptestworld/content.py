@@ -94,6 +94,8 @@ class APtestcontent(datacontent):
             "Z613": "Zone 6 - Space 13",
             "Z6?": "Zone 6 - Happening Space",
         }
+        for i in range(1,51):
+            self.locations[f"T{i}"] = f"1st place on Turn: {i:02}"
         self.items = {
             "Z1key": "Zone 1 Key",
             "Z2key": "Zone 2 Key",
@@ -102,7 +104,8 @@ class APtestcontent(datacontent):
             "Z5key": "Zone 5 Key",
             "Z6key": "Zone 6 Key",
             "PShrom": "Progressive Shrooment",
-            "ABTPSS": "Super Star!"
+            "APTBPT": "Progressive Turns",
+            "I18": "Proggressive Wacky Watch",
         }
     def create_location_table(self) -> dict:
         output = {}

@@ -10,11 +10,11 @@ def link_regions(player, source: Region, target: Region, name: str):
     entrance.connect(target)
     return entrance
 
-def create_regions(world):
+def create_regions(world, turns, progturns):
     mw = world.multiworld
     p = world.player
     
     boards.regions.create_regions(mw, p)
-    boards.aptestworld.regions.create_regions(mw, p)
+    boards.aptestworld.regions.create_regions(mw, p, turns, progturns)
     open_board = link_regions(p, mw.get_region("Menu", p), mw.get_region("APTB_0", p), "Open Board Select Menu")
     set_rule(open_board, lambda state: True)

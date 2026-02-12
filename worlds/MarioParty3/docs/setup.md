@@ -26,13 +26,14 @@ See the guide on setting up a basic YAML at the Archipelago setup guide:
 
 ### Where do I get a config file?
 
-Use the [Mario Party 3 player options page](/games/Mario%20Party%203/player-options) to generate a config file.
+Use the Archipelago launcher to generate template YAMLs, then edit the Mario Party 3 YAML accordingly.
 
 ## Joining a MultiWorld Game
 
-1. Start BizHawk and load your patched Mario Party 3 ROM.
-2. Copy `connector_MP3.lua` into your Archipelago `data/lua/` folder.
-3. Open the Lua console and load the connector script:
+1. Place the MarioParty3.apworld into your custom worlds folder.
+2. Start BizHawk and load your patched Mario Party 3 ROM.
+3. Copy `connector_MP3.lua` and the `boards` folder into your Archipelago `data/lua/` folder.
+4. Open the Lua console and load the connector script:
    - `data/lua/connector_MP3.lua` in your Archipelago folder.
-4. Start the Archipelago client and connect to your room.
-5. Once both the client and BizHawk are connected, you are ready to play.
+5. Start the Archipelago client and connect to your room.
+6. Once both the client and BizHawk are connected, you are ready to play.

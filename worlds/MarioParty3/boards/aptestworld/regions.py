@@ -8,7 +8,7 @@ def link_regions(player, source: Region, target: Region, name: str):
     entrance.connect(target)
     return entrance
 
-def create_regions(mw,p):
+def create_regions(mw,p,turns,prog):
     
     APTB_0 = Region("APTB_0", p, mw)
     APTB_1 = Region("APTB_1", p, mw)
@@ -17,6 +17,7 @@ def create_regions(mw,p):
     APTB_4 = Region("APTB_4", p, mw)
     APTB_5 = Region("APTB_5", p, mw)
     APTB_6 = Region("APTB_6", p, mw)
+    turnslist = []
     
     door2 = link_regions(p, APTB_0, APTB_1, "AP Test Board Zone 0 -> Zone 1")
     set_rule(door2, lambda state: state.has("AP Test Board - Zone 1 Key", p))
@@ -58,5 +59,18 @@ def create_regions(mw,p):
         elif loc_name.startswith("AP Test Board - Zone 6"):
             location = MarioParty3Location(p, loc_name, loc_id, APTB_6)
             APTB_6.locations.append(location)
+        elif loc_name.startswith("AP Test Board - 1st place on Turn"):
+            TC = int(loc_name.split("Turn: ")[1])
+            if TC <= turns:
+                turnslist.append((loc_name, loc_id))
+    turnslist.sort(key=lambda x: int(x[0].split("Turn: ")[1]))
+    for loc_name, loc_id in turnslist:
+        location = MarioParty3Location(p, loc_name, loc_id, APTB_0)
+        APTB_0.locations.append(location)
+        if prog:
+            turn_num = int(loc_name.split("Turn: ")[1])
+            req = turn_num - 1  # Turn 01 is free
+            set_rule(location, lambda state, req=req: state.count("AP Test Board - Progressive Turns", p) >= req)
+                
     
     mw.regions += [APTB_0, APTB_1, APTB_2, APTB_3, APTB_4, APTB_5, APTB_6]

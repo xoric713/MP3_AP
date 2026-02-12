@@ -7,13 +7,10 @@ class aptestenabledOption(Toggle):
     display_name = "AP Test Board Enabled"
     default = True
     
-class APteststarsOption(Range):
-    """Set the number of stars required to win on the AP Test Board."""
-    display_name = "AP Test Board Star Count"
-    default = 10
-    range_start = 6
-    range_end = 20
-@dataclass(init=False)
-class OptionMixin:
-    ap_test_board_enabled : aptestenabledOption
-    ap_test_board_star_count : APteststarsOption
+class APtestGameLength(Range):
+    """Set the number of turns required to win on the AP Test Board."""
+    display_name = "AP Test Board Game Length"
+    default = 20
+    range_start = 15
+    range_end = 50
+    
